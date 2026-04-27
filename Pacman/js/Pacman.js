@@ -15,6 +15,11 @@ class Pacman extends Sprite {
     }
 
     update(sprites, keys) {
+        let endScreen = sprites.find((sprite) => sprite instanceof EndScreen);
+        if (endScreen && endScreen.active) {
+            return;
+        }
+
         if (keys['ArrowLeft']) {
             this.direction = 2;
         }
@@ -81,9 +86,20 @@ class Pacman extends Sprite {
             }
         }
 
+        let lives = sprites.find((sprite) => sprite instanceof Lives);
+
         for (let i = 0; i < sprites.length; i++) {
             let sprite = sprites[i];
             if (sprite instanceof Ghost && this.collidesWithGhost(sprite)) {
+                if (lives) {
+                    lives.decrementLives();
+                }
+
+                if (lives && lives.lives <= 0 && endScreen) {
+                    endScreen.active = true;
+                    endScreen.win = false;
+                }
+
                 this.x = this.startX;
                 this.y = this.startY;
                 this.dX = 0;

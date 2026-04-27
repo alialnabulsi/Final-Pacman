@@ -13,6 +13,11 @@ class Ghost extends Sprite {
     }
 
     update(sprites, keys) {
+        let endScreen = sprites.find((sprite) => sprite instanceof EndScreen);
+        if (endScreen && endScreen.active) {
+            return;
+        }
+
         let grid = sprites.find((sprite) => sprite instanceof Grid);
         if (!grid) {
             return;
