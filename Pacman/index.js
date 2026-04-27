@@ -1,6 +1,10 @@
 var game = new Game();
 var myGrid = new Grid(8, 16, 50, game.sprites); 
 game.addSprite(myGrid);
+var myScore = new Score(20, 30, 'green', 'Score:');
+game.addSprite(myScore);
+var myPelletGenerator = new PelletGenerator();
+game.addSprite(myPelletGenerator);
 var myPacman = new Pacman(50, 50, 40, 40, 'yellow', 2);
 game.addSprite(myPacman);
 game.animate();

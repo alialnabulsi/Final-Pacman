@@ -66,6 +66,26 @@ class Pacman extends Sprite {
         if (this.y + this.height > 400) {
             this.y = 400 - this.height;
         }
+
+        let score = sprites.find((sprite) => sprite instanceof Score);
+
+        for (let i = 0; i < sprites.length; i++) {
+            let sprite = sprites[i];
+            if (sprite instanceof Pellet && sprite.alive && this.collidesWithPellet(sprite)) {
+                sprite.alive = false;
+                if (score) {
+                    score.incrementScore();
+                }
+            }
+        }
+    }
+
+    collidesWithPellet(pellet) {
+        const closestX = Math.max(this.x, Math.min(pellet.x, this.x + this.width));
+        const closestY = Math.max(this.y, Math.min(pellet.y, this.y + this.height));
+        const dx = pellet.x - closestX;
+        const dy = pellet.y - closestY;
+        return dx * dx + dy * dy <= pellet.r * pellet.r;
     }
 
     draw(ctx) {
