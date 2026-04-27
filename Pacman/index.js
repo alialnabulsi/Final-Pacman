@@ -1,4 +1,6 @@
 var game = new Game();
+var myBackground = new Background('../Requirements/01.png', '#000');
+game.addSprite(myBackground);
 var myGrid = new Grid(8, 16, 50, game.sprites); 
 game.addSprite(myGrid);
 var myScore = new Score(20, 30, 'green', 'Score:');
@@ -8,6 +10,8 @@ game.addSprite(myLives);
 var myPelletGenerator = new PelletGenerator();
 game.addSprite(myPelletGenerator);
 var myPacman = new Pacman(50, 50, 40, 40, 'yellow', 2);
+var mySoundManager = new SoundManager();
+game.addSprite(mySoundManager);
 game.addSprite(myPacman);
 var ghostOne = new Ghost(650, 50, 40, 40, 'red', 2);
 var ghostTwo = new Ghost(700, 250, 40, 40, 'pink', 2);

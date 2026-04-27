@@ -83,6 +83,11 @@ class Pacman extends Sprite {
                 if (score) {
                     score.incrementScore();
                 }
+
+                let soundManager = sprites.find((s) => s instanceof SoundManager);
+                if (soundManager) {
+                    soundManager.playEat();
+                }
             }
         }
 
