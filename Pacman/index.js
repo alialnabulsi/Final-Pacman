@@ -1,6 +1,6 @@
 var game = new Game();
-var myGrid = new Grid(10, 10, 50, game.sprites); 
+var myGrid = new Grid(8, 16, 50, game.sprites); 
 game.addSprite(myGrid);
-var myRectangle = new Rectangle(0, 0, 50, 50);
-game.addSprite(myRectangle);
+var myPacman = new Pacman(50, 50, 40, 40, 'yellow', 2);
+game.addSprite(myPacman);
 game.animate();
