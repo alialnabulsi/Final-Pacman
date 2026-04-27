@@ -10,6 +10,8 @@ class Pacman extends Sprite {
         this.dX = 0;
         this.dY = 0;
         this.direction = -1;
+        this.startX = x;
+        this.startY = y;
     }
 
     update(sprites, keys) {
@@ -78,6 +80,17 @@ class Pacman extends Sprite {
                 }
             }
         }
+
+        for (let i = 0; i < sprites.length; i++) {
+            let sprite = sprites[i];
+            if (sprite instanceof Ghost && this.collidesWithGhost(sprite)) {
+                this.x = this.startX;
+                this.y = this.startY;
+                this.dX = 0;
+                this.dY = 0;
+                break;
+            }
+        }
     }
 
     collidesWithPellet(pellet) {
@@ -86,6 +99,14 @@ class Pacman extends Sprite {
         const dx = pellet.x - closestX;
         const dy = pellet.y - closestY;
         return dx * dx + dy * dy <= pellet.r * pellet.r;
+    }
+
+
+    collidesWithGhost(ghost) {
+        return this.x < ghost.x + ghost.width &&
+            this.x + this.width > ghost.x &&
+            this.y < ghost.y + ghost.height &&
+            this.y + this.height > ghost.y;
     }
 
     draw(ctx) {

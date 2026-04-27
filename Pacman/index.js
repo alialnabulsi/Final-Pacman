@@ -7,4 +7,8 @@ var myPelletGenerator = new PelletGenerator();
 game.addSprite(myPelletGenerator);
 var myPacman = new Pacman(50, 50, 40, 40, 'yellow', 2);
 game.addSprite(myPacman);
+var ghostOne = new Ghost(650, 50, 40, 40, 'red', 2);
+var ghostTwo = new Ghost(700, 250, 40, 40, 'pink', 2);
+game.addSprite(ghostOne);
+game.addSprite(ghostTwo);
 game.animate();
