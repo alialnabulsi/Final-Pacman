@@ -1,0 +1,3 @@
+The file Pacman/js/Game.js must not be edited.
+Use it as the provided game engine.
+All new functionality must be added through separate classes/files.
